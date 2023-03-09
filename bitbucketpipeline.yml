@@ -1,0 +1,20 @@
+image: mcr.microsoft.com/dotnet/sdk:5.0
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Build and Test
+          script:
+            - dotnet build
+            - dotnet test
+            - dotnet sonarscanner begin /k:"<project-key>" /d:sonar.host.url="<sonarqube-url>" /d:sonar.login="${SONAR_TOKEN}"
+            - dotnet sonarscanner end /d:sonar.login="${SONAR_TOKEN}"
+
+
+The pipeline has one step:
+
+Build and Test: This step will run the dotnet build command to build the code, dotnet test to run the unit tests, and then dotnet sonarscanner to analyze the code using SonarQube. If any of these steps fail, the pipeline will stop, and the merge will not be allowed.
+We need to configure SonarQube with the correct plugins and settings for .NET analysis. We also need to generate a SonarQube token and add it to our pipeline environment variables. Finally, we'll need to replace <project-key> and <sonarqube-url> in the dotnet sonarscanner commands with the appropriate values for your project.
+
+With this setup, our pipeline will automatically build, test, and analyze your .NET codebase. If any step fails, the pipeline will stop, and the merge will not be allowed.
