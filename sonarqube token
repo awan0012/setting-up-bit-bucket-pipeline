@@ -1,0 +1,25 @@
+steps to generate a SonarQube token and add it to your Bitbucket pipeline environment variables:
+
+Log in to your SonarQube instance and go to the Administration tab.
+
+Click on the Security tab and then click on Users.
+
+Click on the Create User button and fill in the required details to create a new user. Make sure to give the user the "Execute Analysis" permission.
+
+Once the user is created, click on the user's name to go to the user profile page.
+
+Click on the Security tab and then click on Generate Tokens.
+
+Enter a name for the token, such as "Bitbucket Pipelines", and click Generate.
+
+Copy the token value that is generated. Make sure to save this token somewhere safe, as you won't be able to see it again.
+
+Go to your Bitbucket repository and click on the Settings icon and select "Pipelines".
+
+Scroll down to the Environment variables section and click on "Add variables".
+
+Enter SONAR_TOKEN as the name of the variable, and paste the SonarQube token value into the Value field.
+
+Click "Add" to save the environment variable.
+
+With the above steps, We will have created a SonarQube token and added it to your Bitbucket pipeline environment variables, allowing your pipeline to access your SonarQube instance for code analysis.
